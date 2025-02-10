@@ -37,4 +37,3 @@ luna.eat("wiskas");
 
 luna.toString();
 
-
