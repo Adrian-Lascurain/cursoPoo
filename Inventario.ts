@@ -1,7 +1,7 @@
 import { Producto } from "./Producto";
 
 // Esta clase la generé para manejar las operaciones básicas del inventario incluyendo sentencias de validación 
-class Inventario{
+export class Inventario{
     // Atributos
     private listaProductos: Producto[] = [];
 
@@ -21,14 +21,20 @@ class Inventario{
         if(prod){
             let indice: number = this.listaProductos.indexOf(prod);
             this.listaProductos.splice(indice,1);
-            console.log(`Se ha eliminado el ${prod.toString()}`);
+            console.log(`Se ha eliminado del inventario el ${prod.toString()}`);
         }else{
             console.log(`El Producto con el id[${id}] no existe en el inventario por lo que no ha sido eliminado`);
         }
     }
 
     consultarProducto(id: number): Producto | undefined{
-        return this.listaProductos.find(producto => producto.id === id)
+        let prod = this.listaProductos.find(producto => producto.id === id);
+        if(prod){
+            console.log(`Consulta: ${prod.toString()}`);
+        }else{
+            console.log(`El producto con el id[${id}] no existe`);
+        }
+        return prod;
     }
 
     consultarInventario(): Producto[]{
@@ -37,28 +43,13 @@ class Inventario{
         return this.listaProductos
     }
 
+    actualizarCantidad(id: number, cantidad: number){
+        let prod: Producto | undefined = this.listaProductos.find(productoLista => productoLista.id === id);
+        if(prod){
+            let indice: number = this.listaProductos.indexOf(prod);
+            this.listaProductos[indice].cantidad = cantidad;
+        }
+    }
+
 }
-
-// Creación de instancias
-const producto1 = new Producto(1, "Cuaderno", 100);
-const producto2 = new Producto(2, "Bolígrafo", 200);
-const producto3 = new Producto(3, "Goma de borrar", 150);
-const inventario = new Inventario();
-
-// Probando funcionalidades
-inventario.agregarProducto(producto1);
-inventario.agregarProducto(producto2);
-inventario.agregarProducto(producto3);
-
-inventario.consultarInventario();
-inventario.agregarProducto(producto1);
-
-inventario.eliminarProducto(5);
-inventario.eliminarProducto(1);
-inventario.consultarProducto(1);
-
-inventario.consultarInventario();
-
- 
-
 

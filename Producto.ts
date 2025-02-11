@@ -1,7 +1,7 @@
 
 // Esta clase la generé porque será utilizada dentro del inventario, de tal manera, que esta solo tenga la responsabilidad de albergar la información relacionada a un producto.
 
-class Producto{
+export class Producto{
     // Atributos
     private _id: number;
     private _nombre: string;
@@ -44,8 +44,8 @@ class Producto{
     }
 
     // Métodos
-    toString():void {
-        console.log(`Producto con id: ${this._id}, nombre: ${this._nombre}, cantidad: ${this._cantidad}`)
+    toString():string {
+        return `Producto con id: ${this._id}, nombre: ${this._nombre}, cantidad: ${this._cantidad}`;
     }
 
 }
